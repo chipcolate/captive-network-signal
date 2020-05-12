@@ -1,31 +1,64 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app {
   display: flex;
-  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.header {
+  background-color: #0e2f56;
+  color: white;
+  opacity: 0.8;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-weight: bold;
+  font-size: large;
+  width: 100vw;
+  height: 10vh;
+  position: fixed;
+  box-shadow: 0 4px 2px -2px gray;
 }
 
-.App-link {
-  color: #61dafb;
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: large;
+  width: 100vw;
+  height: 6vh;
+  padding: 1rem;
+  padding-left: 2rem;
+  background-color: white;
+  position: fixed;
+  box-shadow: 0 0px 4px 1px gray;
+  bottom: 0;
+  background-image: linear-gradient(-90deg, #0e2f56, white);
+}
+
+.logo {
+  width: 15vw;
+}
+
+.image {
+  position: absolute;
+  width: 80vw;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  height: 40vh;
+  position: relative;
+  margin-top: 40%;
+}
+
+.text {
+  position: absolute;
+  bottom: 0;
+  white-space: nowrap;
 }
 
 @keyframes App-logo-spin {
@@ -34,5 +67,71 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes image1 {
+  0% {
+    opacity: 1;
+  }
+  25%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .image1-animate {
+    animation: image1 infinite 5s alternate;
+  }
+}
+
+@keyframes image2 {
+  0%,
+  50%,
+  100% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .image2-animate {
+    animation: image2 infinite 5s alternate;
+  }
+}
+
+@keyframes image3 {
+  0%,
+  75%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .image3-animate {
+    animation: image3 infinite 5s alternate;
+  }
+}
+
+@keyframes image4 {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .image4-animate {
+    animation: image4 infinite 5s alternate;
   }
 }
