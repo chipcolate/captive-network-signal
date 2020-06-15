@@ -14,18 +14,40 @@ import {
 import { useEffect } from "react";
 import { useTimer } from "use-timer";
 
+const NETWORK_LEVEL = "modem.generic.signal-quality.value";
+const NETWORK_OPERATOR = "modem.3gpp.operator-name";
+const NETWORK_TYPE = "modem.generic.access-technol ogies.value[1]";
+
+const networkTypes = {
+  gsm: "2G",
+  gprs: "2.5G",
+  umts: "3G",
+  lte: "4G",
+};
+
 const fetchSignal = async () => {
-  // return await fetch("/");
-  return new Promise((res, rej) => {
-    res({ level: Math.floor(Math.random() * 100) });
-  });
+  if (process.env.NODE_ENV === "development") {
+    return new Promise((res, rej) => {
+      res({
+        [NETWORK_LEVEL]: Math.floor(Math.random() * 100),
+        [NETWORK_OPERATOR]: "TIM",
+        [NETWORK_TYPE]: "umts",
+      });
+    });
+  }
+  return await fetch(
+    process.env.REACT_APP_NETWORK
+      ? process.env.REACT_APP_NETWORK
+      : "http://network/v1/modem"
+  );
 };
 
 function App() {
   const { status, data, error, refetch } = useQuery("signal", fetchSignal);
   const { start, reset } = useTimer({
-    // initialTime: 180,
-    initialTime: 2,
+    initialTime: process.env.REACT_APP_REFRESH
+      ? process.env.REACT_APP_REFRESH
+      : 30,
     timerType: "DECREMENTAL",
     endTime: 0,
     onTimeOver: async () => {
@@ -40,7 +62,15 @@ function App() {
   }, [start]);
 
   return (
-    <div className="app">
+    <div
+      className="app"
+      style={{
+        background: process.env.REACT_APP_BACKGROUND
+          ? process.env.REACT_APP_BACKGROUND
+          : "",
+        color: process.env.REACT_APP_TEXT ? process.env.REACT_APP_TEXT : "",
+      }}
+    >
       <Header />
       {status === "loading" ? (
         <Loading />
@@ -48,17 +78,20 @@ function App() {
         <span>Error: {error?.message}</span>
       ) : status === "success" ? (
         <div className="container">
-          {data.level > 60 ? (
+          {data[NETWORK_LEVEL] > 60 ? (
             <img src={green} className="image" alt="green" />
-          ) : data.level > 40 ? (
+          ) : data[NETWORK_LEVEL] > 40 ? (
             <img src={low_green} className="image" alt="low_green" />
           ) : (
             <img src={low_red} className="image" alt="red" />
           )}
           <h2
-            style={{ color: data.level > 40 ? "darkseagreen" : "red" }}
+            style={{ color: data[NETWORK_LEVEL] > 40 ? "darkseagreen" : "red" }}
             className="text"
-          >{`Signal level: ${data.level}`}</h2>
+          >{`Signal level: ${data[NETWORK_LEVEL]}`}</h2>
+          <h4 className="text" style={{ bottom: "-3rem" }}>{`${
+            data[NETWORK_OPERATOR]
+          } - ${networkTypes[data[NETWORK_TYPE]]}`}</h4>
         </div>
       ) : (
         <span>Error</span>
@@ -69,13 +102,37 @@ function App() {
 }
 
 const Header = () => {
-  return <header className="header">Network Level</header>;
+  return (
+    <header
+      className="header"
+      style={{
+        background: process.env.REACT_APP_COLOR
+          ? process.env.REACT_APP_COLOR
+          : "",
+        color: process.env.REACT_APP_TEXT ? process.env.REACT_APP_TEXT : "",
+      }}
+    >
+      Network Level
+    </header>
+  );
 };
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <img src={uspace} className="logo" alt="logo" />
+    <footer
+      className="footer"
+      style={{
+        backgroundImage: process.env.REACT_APP_COLOR
+          ? `linear-gradient(-90deg, ${process.env.REACT_APP_COLOR}, white)`
+          : "",
+        color: process.env.REACT_APP_TEXT ? process.env.REACT_APP_TEXT : "",
+      }}
+    >
+      <img
+        src={process.env.REACT_APP_LOGO ? process.env.REACT_APP_LOGO : uspace}
+        className="logo"
+        alt="logo"
+      />
     </footer>
   );
 };
