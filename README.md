@@ -1,3 +1,20 @@
+# captive network signal
+
+This utility web page should be served as captive portal by a network service to show up network level from the modem.
+
+## Config
+
+Edit .env file to customize page behaviour. Create react app environment variables always have REACT_APP prefix.
+
+| NAME                 | DEFAULT                   | DESCRIPTION                         |
+| -------------------- | ------------------------- | ----------------------------------- |
+| REACT_APP_LOGO       | uspace_logo               | The branding logo for the web view  |
+| REACT_APP_COLOR      | #0e2f56                   | The branding color for the web view |
+| REACT_APP_BACKGROUND | #fff                      | The branding color for the web view |
+| REACT_APP_TEXT       | #fff                      | Web view text color                 |
+| REACT_APP_NETWORK    | "http://network/v1/modem" | Network service endpoint            |
+| REACT_APP_REFRESH    | 30                        | Network level refresh time          |
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
