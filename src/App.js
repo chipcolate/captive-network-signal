@@ -16,7 +16,7 @@ import { useTimer } from "use-timer";
 
 const NETWORK_LEVEL = "modem.generic.signal-quality.value";
 const NETWORK_OPERATOR = "modem.3gpp.operator-name";
-const NETWORK_TYPE = "modem.generic.access-technol ogies.value[1]";
+const NETWORK_TYPE = "modem.generic.access-technologies.value[1]";
 
 const networkTypes = {
   gsm: "2G",
