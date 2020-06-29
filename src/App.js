@@ -131,7 +131,7 @@ const Footer = () => {
       }}
     >
       <img
-        src={process.env.REACT_APP_LOGO ? process.env.REACT_APP_LOGO : uspace}
+        src={process.env.REACT_APP_LOGO ? process.env.REACT_APP_LOGO : agrorobotica}
         className="logo"
         alt="logo"
       />
