@@ -8,6 +8,7 @@ import low_green from "./low_green.png";
 import red from "./red.png";
 import yellow from "./yellow.png";
 import uspace from "./uspace.png";
+import agrorobotica from "./agrorobotica.png";
 
 export {
   black,
@@ -20,4 +21,5 @@ export {
   red,
   yellow,
   uspace,
+  agrorobotica,
 };
