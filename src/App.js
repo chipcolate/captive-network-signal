@@ -38,7 +38,8 @@ const fetchSignal = async () => {
   return await fetch(
     process.env.REACT_APP_NETWORK
       ? process.env.REACT_APP_NETWORK
-      : "http://network/v1/modem"
+      : "http://192.168.42.1/v1/modem" // default DHCP server local ip
+      
   );
 };
 
