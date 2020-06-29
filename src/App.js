@@ -6,7 +6,7 @@ import {
   black0,
   black1,
   black2,
-  uspace,
+  agrorobotica,
   green,
   low_green,
   low_red,
