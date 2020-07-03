@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Agrorobotica Network",
+  "name": "Agrorobotica network signal level application",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,18 +8,44 @@
       "type": "image/x-icon"
     },
     {
+      "src": "\/logo36.png",
+      "sizes": "36x36",
+      "type": "image\/png",
+      "density": "0.75"
+     },
+     {
+      "src": "\/logo48.png",
+      "sizes": "48x48",
+      "type": "image\/png",
+      "density": "1.0"
+     },
+     {
+      "src": "\/logo72.png",
+      "sizes": "72x72",
+      "type": "image\/png",
+      "density": "1.5"
+     },
+     {
+      "src": "\/logo96.png",
+      "sizes": "96x96",
+      "type": "image\/png",
+      "density": "2.0"
+     },
+     {
+      "src": "\/logo144.png",
+      "sizes": "144x144",
+      "type": "image\/png",
+      "density": "3.0"
+     },
+    {
       "src": "logo192.png",
       "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "192x192 512x512",
+      "density": "4.0"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#c4e134",
   "background_color": "#ffffff"
 }
