@@ -50,9 +50,9 @@
 .container {
   display: flex;
   justify-content: center;
-  height: 40vh;
+  height: 50vh;
   position: relative;
-  margin-top: 40%;
+  margin-top: 10vh;
 }
 
 .text {
