@@ -1,0 +1,65 @@
+@keyframes image1 {
+  0% {
+    opacity: 1;
+  }
+  25%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .image1-animate {
+    animation: image1 infinite 5s alternate;
+  }
+}
+
+@keyframes image2 {
+  0%,
+  50%,
+  100% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .image2-animate {
+    animation: image2 infinite 5s alternate;
+  }
+}
+
+@keyframes image3 {
+  0%,
+  75%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .image3-animate {
+    animation: image3 infinite 5s alternate;
+  }
+}
+
+@keyframes image4 {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .image4-animate {
+    animation: image4 infinite 5s alternate;
+  }
+}
