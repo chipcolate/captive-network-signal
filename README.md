@@ -2,84 +2,41 @@
 
 This utility web page should be served as captive portal by a network service to show up network level from the modem.
 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 ## Config
 
 Edit .env file to customize page behaviour. Create react app environment variables always have REACT_APP prefix.
 
-| NAME                 | DEFAULT                   | DESCRIPTION                         |
-| -------------------- | ------------------------- | ----------------------------------- |
-| REACT_APP_LOGO       | uspace_logo               | The branding logo for the web view  |
-| REACT_APP_COLOR      | #0e2f56                   | The branding color for the web view |
-| REACT_APP_BACKGROUND | #fff                      | The branding color for the web view |
-| REACT_APP_TEXT       | #fff                      | Web view text color                 |
-| REACT_APP_NETWORK    | "http://network/v1/modem" | Network service endpoint            |
-| REACT_APP_REFRESH    | 30                        | Network level refresh time          |
+| NAME                  | DEFAULT                       | DESCRIPTION                               |
+| --------------------- | ----------------------------- | ----------------------------------------- |
+| REACT_APP_LOGO        | uspace_logo                   | The branding logo for the web view        |
+| REACT_APP_COLOR       | #0e2f56                       | The branding color for the web view       |
+| REACT_APP_BACKGROUND  | #fff                          | The branding color for the web view       |
+| REACT_APP_TEXT        | #fff                          | Web view text color                       |
+| REACT_APP_NETWORK     | "http://network/v1/modem"     | Network service endpoint                  |
+| REACT_APP_DEVICE_NAME | "http://network/v1/name"      | Network service device name endpoint      |
+| REACT_APP_INSTALLED   | "http://network/v1/installed" | Network service device installed endpoint |
+| REACT_APP_REFRESH     | 30                            | Network level refresh time                |
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Release
 
-## Available Scripts
+When this project is updated, a new version has to be released and the version tag has to be bumped on using projects in order to update the portal.
 
-In the project directory, you can run:
+### Packaging
 
-### `npm start`
+First build the project locally using `npm run build`. Build will generate the optimize bundle in `build` folder. In order to serve the portal on a device the built code needs to be compressed using `.tag.gz` format. The compressed file has to contain the content of `build` folder in the root. In order to generate the compressed file open your terminal, navigate `INSIDE` build folder and run:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+> tar -czvf captive-network-signal.tar.gz *
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Now keep the `captive-network-signal.tar.gz` file you find in build folder for the next step.
 
-### `npm test`
+### Publishing
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Navigate to [project releases page](https://github.com/uspaceit/captive-network-signal/releases) and start the new release creation clicking on [Draft a new release](https://github.com/uspaceit/captive-network-signal/releases/new). Insert target version following semver format and including `v`. Insert release name following `Agrorobotica Network Captive Signal <version>` format. Describe release upgrades and attach the previous packaed code to thee release. Finally publish the release.
 
-### `npm run build`
+### Bump version
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In order to update the served portal version on provider devices you have to update the target version in the service `Dockerfile.template`. For instance, in SpyFly case navigate to [marionette-network service](https://github.com/uspaceit/marionette-network/tree/65796a221d05660f09e838967c29e46153e183f7) and update [wifi-connect setup line](https://github.com/uspaceit/marionette-network/blob/65796a221d05660f09e838967c29e46153e183f7/Dockerfile.template#L48) replacing `https://github.com/uspaceit/captive-network-signal/releases/download/v<version>/captive-network-signal.tar.gz` version with the new release.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+The device firmware needs to be built again in order to start serving the new portal version.
